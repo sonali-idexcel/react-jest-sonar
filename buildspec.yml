@@ -1,0 +1,33 @@
+# Do not change version. This is the version of aws buildspec, not the version of your buldspec file.
+version: 0.2
+env:
+  parameter-store:
+    #Login: sonartoken
+    #Host: Host
+    #Username: username
+    #Password: password
+    #Project: sonarproject
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10  
+    commands:
+      #- echo Installing Mocha...
+      #- npm install -g mocha
+      
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - npm install
+      - npm install
+      #- npm install -g snyk
+      #- snyk test 
+      #- snyk monitor
+      #- echo snyk test success
+      - npm install -g sonarqube-scanner
+     
+      #- aws s3 cp s3://$bucket/sonar-project.properties . 
+      #- chmod +x sonar-project.properties  
+ 
+      - sonar-scanner -Dsonar.host.url=http://3.80.230.191:9000 -Dsonar.login=89ca1c5f689fa9c51d1c94fa205468ec3471227f
